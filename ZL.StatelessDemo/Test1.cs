@@ -4,10 +4,7 @@ using System.Text;
 
 namespace ZL.StatelessDemo
 {
-    public class Condition
+    class Test1
     {
-        public string Name { get; set; }
-
-        private string n { get; set; }
     }
 }

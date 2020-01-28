@@ -7,8 +7,9 @@ namespace ZL.StatelessDemo
     {
         static void Main(string[] args)
         {
-            TestBasic.Run();
+            //TestBasic.Run();
             //TestClass.Test();
+            TestParallel.Run();
             Console.ReadLine();
         }
     }
