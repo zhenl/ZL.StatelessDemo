@@ -9,7 +9,8 @@ namespace ZL.StatelessDemo
         {
             //TestBasic.Run();
             //TestClass.Test();
-            TestParallel.Run();
+            //TestParallel.Run();
+            TestPermitIf.Run();
             Console.ReadLine();
         }
     }
