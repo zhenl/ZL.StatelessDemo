@@ -11,8 +11,8 @@ namespace ZL.StatelessDemo
 
             var stateMachine = new StateMachine<string, string>("请假申请");
 
-            stateMachine.Configure("请假申请").PermitIf("提交申请", "部门经理审批", () => { return days <= 3; });
-            stateMachine.Configure("请假申请").PermitIf("提交申请", "总经理审批", () => { return days > 3; });
+            stateMachine.Configure("请假申请").PermitIf("提交", "部门经理审批", () => { return days <= 3; });
+            stateMachine.Configure("请假申请").PermitIf("提交", "总经理审批", () => { return days >3; });
 
 
             stateMachine.Configure("部门经理审批").OnEntry(() => { OnEntry(stateMachine.State); });
@@ -21,8 +21,8 @@ namespace ZL.StatelessDemo
             stateMachine.Configure("总经理审批").OnEntry(() => { OnEntry(stateMachine.State); });
             stateMachine.Configure("总经理审批").OnExit(() => { OnExit(stateMachine.State); });
 
-            stateMachine.Configure("部门经理审批").Permit("审批完成", "结束");
-            stateMachine.Configure("总经理审批").Permit("审批完成", "结束");
+            stateMachine.Configure("部门经理审批").Permit("提交", "结束");
+            stateMachine.Configure("总经理审批").Permit("提交", "结束");
 
             stateMachine.OnUnhandledTrigger((state, trigger) => { });
 
@@ -31,8 +31,8 @@ namespace ZL.StatelessDemo
             var command = Console.ReadLine();
             if (int.TryParse(command, out days))
             {
-                stateMachine.Fire("提交申请");
-                stateMachine.Fire("审批完成");
+                stateMachine.Fire("提交");
+                stateMachine.Fire("提交");
 
                 Console.WriteLine(stateMachine.State);
             }
